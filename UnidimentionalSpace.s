@@ -58,7 +58,7 @@ printMemory:
     xor %ecx, %ecx
 
 printMemoryLoop:
-    cmp $1024, %ebx # cate elemente afiseaza!!! totalul ar trebui 1024 dar folosesc atata pt debug :P
+    cmp $1024, %ebx 
     je printMemoryExit
 
 

@@ -20,14 +20,6 @@
     nrFisiere: .space 4
 .text
 
-#
-#
-# FOARTE IMPORTANT!!!!!
-# MOMENTAN EX FACUT PT O MATRICE DE 1024x1024 !!!!!
-# SCHIMBA PESTE TOT 1024 in 1024!!!!
-#
-#
-
 # FUNCTIE PRINT DE DEBUG 
 
 printMemory:
@@ -39,19 +31,18 @@ printMemory:
     xor %eax, %eax
 
 printMemoryLineLoop:
-    cmp $1024, %eax  # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    cmp $1024, %eax  
     je printMemoryExit
 
     xor %ecx, %ecx
 
 printMemoryColumnLoop:
-    cmp $1024, %ecx # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    je printMemoryLineLoopInc
+    cmp $1024, %ecx 
 
     # inmultirea indexului de linie cu 1024:
     push %eax
     xor %edx, %edx
-    mov $1024, %ebx # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    mov $1024, %ebx 
     mul %ebx
 
     # adunarea cu indexul de coloana:
@@ -77,7 +68,7 @@ printMemoryColumnLoopInc:
     jmp printMemoryColumnLoop
 
 printMemoryLineLoopInc:
-    push %eax # astea sunt aici pt ca printf ul fucks everything up
+    push %eax # astea sunt aici pt ca printf ul hates me
     push %ecx
 
     push $formatPrintEndline
@@ -121,19 +112,19 @@ printAuxMemory:
     xor %eax, %eax
 
 printAuxMemoryLineLoop:
-    cmp $16, %eax  # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    cmp $16, %eax  
     je printAuxMemoryExit
 
     xor %ecx, %ecx
 
 printAuxMemoryColumnLoop:
-    cmp $16, %ecx # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    cmp $16, %ecx 
     je printAuxMemoryLineLoopInc
 
     # inmultirea indexului de linie cu 1024:
     push %eax
     xor %edx, %edx
-    mov $16, %ebx # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    mov $16, %ebx 
     mul %ebx
 
     # adunarea cu indexul de coloana:
@@ -159,7 +150,7 @@ printAuxMemoryColumnLoopInc:
     jmp printAuxMemoryColumnLoop
 
 printAuxMemoryLineLoopInc:
-    push %eax # astea sunt aici pt ca printf ul fucks everything up
+    push %eax 
     push %ecx
 
     push $formatPrintEndline
@@ -232,7 +223,7 @@ printImbricatedLoopInc:
     jmp printImbricatedLoop
 
 printEverythingLoopContinue:
-    cmp $1, %bl # actually negated the if statement in my C sketch for this to work lol
+    cmp $1, %bl 
     jne printEverythingLoopInc
     cmpb $0, (%edi, %ecx, 1)
     je printEverythingLoopInc
@@ -338,7 +329,7 @@ calculeazaIndex:
     push %ecx
 
     xor %edx, %edx
-    mov $1024, %ebx # TB SCHIMBAT LA 1024 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    mov $1024, %ebx 
     mul %ebx
 
     # adunarea cu indexul de coloana:
@@ -399,7 +390,7 @@ addMainPart3:
     mov $0, %eax # indexul/ linie
 
 addLineLoop:
-    cmp $1024, %eax # TB PUS 1024!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    cmp $1024, %eax 
     je addExit
     cmp $0, %ebx # adaugat == 0?
     jne addExit
@@ -408,8 +399,7 @@ addLineLoop:
     xor %ecx, %ecx
 
 addFindStartLoop:
-    cmp $1024, %ecx # ecx = j ALSO TB PUS 1024!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    je addLineLoopPart2
+    cmp $1024, %ecx # ecx = j ALSO 
     cmp $0xffffffff, %esi
     jne addLineLoopPart2
 
@@ -533,7 +523,7 @@ addFillArrayLoop:
     movb %cl, (%edi, %ebx, 1)
     pop %ecx
 
-    pop %ebx # reprimeste adaugat?? sau ok?
+    pop %ebx
     add $1, %esi
 
     inc %ecx
@@ -573,7 +563,7 @@ addAux:
     mov auxUltimaLinie, %eax # indexul/ linie
 
 auxLineLoop:
-    cmp $1024, %eax # TB PUS 1024!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    cmp $1024, %eax 
     je auxExit
     cmp $0, %ebx # adaugat == 0?
     jne auxExit
@@ -582,7 +572,7 @@ auxLineLoop:
     xor %ecx, %ecx
 
 auxFindStartLoop:
-    cmp $1024, %ecx # ecx = j ALSO TB PUS 1024!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    cmp $1024, %ecx # ecx = j 
     je auxLineLoopPart2
     cmp $0xffffffff, %esi
     jne auxLineLoopPart2
@@ -699,7 +689,7 @@ auxFillArrayLoop:
     movb %cl, (%edi, %ebx, 1)
     pop %ecx
 
-    pop %ebx # reprimeste adaugat?? sau ok?
+    pop %ebx
     add $1, %esi
 
     inc %ecx
@@ -784,7 +774,7 @@ getSpecialCase0:
     movl $0, getPrimulStop
 
 getSecondLoop:
-    cmp $1024, %ecx # tb pus 1024
+    cmp $1024, %ecx
     je getIf
     cmp $0xFFFFFFFF, %ebx
     jne getIf
@@ -934,10 +924,6 @@ deleteExit:
     pop %ebp
     ret
 
-# functie necesara pt functionarea buna a proiectului: recalculare ultima linie
-# recalculeaza ultima linie!!! 
-
-
 # FUNCTIA DEFRAG 
 
 defragMain:
@@ -1034,7 +1020,6 @@ defragExit:
     pop %edi
     ret
 
-# functie facuta pt ca imi era FRICA sa modific orice din add pt ca mi-a dat atataea erori de compilare ca nu mai vreau :3
 
 #
 # GLOBAL MAIN STARTING POINT
