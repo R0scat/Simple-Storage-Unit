@@ -1,4 +1,4 @@
-#Storage saving unit
+# Storage saving unit
 
 This is a college project made to mimick the allocation of memory from a minimal operating system. It includes four main operations that are required for any system to work properly: adding data, finding it, deleting it and keeping it organised (by means of defragmentation). Code is entirely written in asm x86.
 
